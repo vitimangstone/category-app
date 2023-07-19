@@ -21,14 +21,49 @@ namespace CategoriesApp.API.Controllers
         public IActionResult Get()
         {
             var categories = _service.GetCategories();
-            return Ok(categories);
+            var cats = CreateDictionaries(categories.Where(c => c.IsRoot).ToList());
+            return Ok(cats);
         }
 
         // POST api/<CategoriesController>
         [HttpPost]
-        public void Post([FromBody] List<CategoryTuple> tuples)
+        public void Post([FromBody] object obj)
         {
-            _service.AddUpdateCategories(tuples);
+            var categories = new List<CategoryTuple>();
+            var objString = obj.ToString();
+            var tuples = objString.Split(',');
+            foreach (var tuple in tuples)
+            {
+                var tupleValues = tuple.Split(':');
+                categories.Add(new CategoryTuple
+                {
+                    Parent = tupleValues[0].Replace("{","").Replace("}","").Replace("\"", "").Trim(),
+                    Child = tupleValues[1].Replace("{", "").Replace("}", "").Replace("\"", "").Trim()
+                });
+            }
+
+            _service.AddUpdateCategories(categories);
+        }
+
+        private Dictionary<string, object> CreateDictionaries(List<Category> categories)
+        {
+            var dictInit = new Dictionary<string, object>();
+
+            foreach (var category in categories)
+            {
+                if (category.ChildCategories.Count() == 0)
+                {
+                    dictInit.Add(category.Name, new Dictionary<string, object>());
+                }
+                else
+                {
+                    var dictObj = CreateDictionaries(category.ChildCategories);
+                    dictInit.Add(category.Name, dictObj);
+                }
+
+            }
+            return dictInit;
+
         }
 
     }

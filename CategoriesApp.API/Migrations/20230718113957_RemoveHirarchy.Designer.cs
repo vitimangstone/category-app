@@ -4,6 +4,7 @@ using CategoriesApp.API;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CategoriesApp.API.Migrations
 {
     [DbContext(typeof(CategoriesContext))]
-    partial class CetegotiesContextModelSnapshot : ModelSnapshot
+    [Migration("20230718113957_RemoveHirarchy")]
+    partial class RemoveHirarchy
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
