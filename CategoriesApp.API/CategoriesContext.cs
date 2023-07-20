@@ -7,6 +7,7 @@ namespace CategoriesApp.API
     public class CategoriesContext: DbContext
     {
         public DbSet<Category> Categories { get; set; }
+        public DbSet<User> Users { get; set; }
         public CategoriesContext(DbContextOptions<CategoriesContext> options): base(options)
         {
 

@@ -1,6 +1,6 @@
 ﻿namespace CategoriesApp.API
 {
-    public class Constants
+    public class ConstantsConf
     {
         public int Depth { get; set; }
     }

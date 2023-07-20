@@ -8,9 +8,9 @@ namespace CategoriesApp.API
     {
         private readonly CategoriesContext _context;
         public Dictionary<string, Category> CategoryDict { get; set; }
-        public readonly Constants DepthLimit;
+        public readonly ConstantsConf DepthLimit;
 
-        public CategoryService(CategoriesContext context, IOptions<Constants> options)
+        public CategoryService(CategoriesContext context, IOptions<ConstantsConf> options)
         {
             _context = context;
             CategoryDict = new Dictionary<string, Category>();

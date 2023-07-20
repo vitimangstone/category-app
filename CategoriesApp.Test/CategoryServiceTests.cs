@@ -8,7 +8,7 @@ namespace CategoriesApp.Test
     public class CategoryServiceTests
     {
         private readonly CategoriesContext _context;
-        private IOptions<Constants> _options;
+        private IOptions<ConstantsConf> _options;
 
         public CategoryServiceTests()
         {
@@ -16,7 +16,7 @@ namespace CategoriesApp.Test
                 .UseInMemoryDatabase("TestinDb");
 
             _context = new CategoriesContext(optionBuilder.Options);
-            _options = Options.Create(new Constants { Depth = 10}); ;
+            _options = Options.Create(new ConstantsConf { Depth = 10}); ;
         }
 
         [Fact]
@@ -69,7 +69,7 @@ namespace CategoriesApp.Test
             };
             _context.Categories.Add(firstCategory);
             _context.SaveChanges();
-            _options = Options.Create(new Constants { Depth = 1 }); ;
+            _options = Options.Create(new ConstantsConf { Depth = 1 }); ;
             var service = new CategoryService(_context, _options);
 
             var tuple = new CategoryTuple { Child = "O", Parent = "P" };
@@ -145,7 +145,7 @@ namespace CategoriesApp.Test
             };
             _context.Categories.Add(firstCategory);
             _context.SaveChanges();
-            _options = Options.Create(new Constants { Depth = 1 }); ;
+            _options = Options.Create(new ConstantsConf { Depth = 1 }); ;
 
             var service = new CategoryService(_context, _options);
 

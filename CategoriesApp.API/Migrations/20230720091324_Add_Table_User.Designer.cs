@@ -4,6 +4,7 @@ using CategoriesApp.API;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CategoriesApp.API.Migrations
 {
     [DbContext(typeof(CategoriesContext))]
-    partial class CetegotiesContextModelSnapshot : ModelSnapshot
+    [Migration("20230720091324_Add_Table_User")]
+    partial class Add_Table_User
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
